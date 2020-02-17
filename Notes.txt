@@ -1,0 +1,7 @@
+PostGreSQL Installation and Setup
+
+PgAdmin: (Graphical interface we will use to make queries) has two version 
+ pgAdmin 4 opens in the browser
+ pgAdmin 3 opens as a program
+
+

@@ -1,0 +1,124 @@
+## SELECT Statement
+
+One of the comman task is to query data from tables by using SELECT clause or can ne say it as SELECT Statement.
+
+It has many clauses that you can combine to form a powerful query.
+    SELECT column1, column2, ... FROM table_name
+
+If you want to query data from all column , you can use an asterisk (*) as the shorthand for all columns.
+    SELECT * FROM table_name
+For distinct values 
+    SELECT DISTINCT(column1) FROM table_name
+    
+It is not good practice to use the asterisk (*) in the SELECT statement
+Imagine that you have a large table with many columns, the SELECT statement with an asterisk (*) will query all the data from the entire columns, which may not necessary.
+It makes your database server work harder and increase the traffic between the database server and applications. As the result, it slowsdown your application.
+Therefore, you should specify the column names in the SELECT clause whenever possible to get only necessary data form the table.
+
+
+## SELECT DISTINCT
+
+In a table there may a chance to have duplicate values, If we want to get unique values then DISTINCT comes into picture
+    SELECT DISTINCT column1, column2, ... FROM table_name
+
+
+## SELECT WHERE Statement
+
+If you want to filter the data acording to the given filter criteria
+    SELECT column1, column2 FROM table_name WHERE column1 = "Ankit"
+
+## COUNT FUNCTION
+
+The count function returns the number of input rows that match a specific condition of a query
+    SELECT COUNT(*) FROM table_name
+You can also specify a column for the readability
+    SELECT COUNT(column_name) FROM table_name
+
+Similar to the COUNT(*) function, the COUNT(column) function returns the number of rows returned by a SELECT clause.
+However, it does not consider NULL values in the column1.
+
+Finally we can use COUNT with DISTINCT, for example
+    SELECT COUNT(DISTINCT column_name) FROM table_name
+
+
+## LIMIT Statement - Equvalent syntax in SQL Server is SET ROWCUNT
+
+LIMIT allows you to limit the number of rows you get back after a query
+Useful when wanting to get all columns but not all rows.
+Goes at the end of a query.
+
+But if you want a generic pagination, can write custome pagination query as below
+;WITH Results_CTE AS
+(
+    SELECT
+        Col1, Col2, ...,
+        ROW_NUMBER() OVER (ORDER BY SortCol1, SortCol2, ...) AS RowNum
+    FROM Table
+    WHERE <whatever>
+)
+SELECT *
+FROM Results_CTE
+WHERE RowNum >= @Offset
+AND RowNum < @Offset + @Limit
+
+* One more SQL Command
+SELECT PersonID FROM Person 
+WHERE PersonID < 0
+ORDER BY PersonID
+OFFSET 10 ROWS
+FETCH NEXT 10 ROWS ONLY;
+
+## ORDER BY Statement
+
+The ORDER BY Clause allows you to sort the rows returned from the SELECT statement in either ascending or descending order based on the Criteria specified.
+    SELECT column1, column2 FROM table_name ORDER BY column1 ASC/DESC;
+
+Specify the column that you want to sort in the ORDER BY clause. If you sort the result set by multiple columns, use a comma to seperate between two columns.
+Use ASC to sort the result set in ascending order and DESC to sort the result set in descending order.
+If you leave it blank, ORDER BY clause use ASC by default.
+
+SELECT column1, column2 FROM table_name ORDER BY column1 ASC, column2 DESC
+
+
+## BETWEEN Statement
+
+We use the BETWEEN operator to match a value against a range of values. For example:
+    value BETWEEN low_value AND high_value
+
+If the value is greater than or equal to low value and less than or equal to high value, the expression returns true, or vice versa.
+We can rewrite teh BETWEEN operator by using the greater than or equal ( >= ) and less than or equal ( <= ) operators as the following statement:
+    value >= low and value <= high;
+
+If we want to check if a value is out of the range, we use the NOT BETWEEN operator as follows:
+    value NOT BETWEEN low_value AND high_value
+
+## IN Statement
+
+You use the IN operator with the WHERE clause to check if a value matches any values in the list of values.
+    value IN (value1, value2, ....)
+
+The expression returns true if the value matches any value in the list i.e., value1, value2, etc. The list of value is not limited to a list of numbers or strings but also a result set of a SELECT statement as shown in the following query:
+    value IN ( SELECT value FROM table_name)
+
+Just like with BETWEEN, you can use NOT to adjust an IN statement ( NOT IN )
+
+## LIKE Statement
+
+It is a kind of pattern matching
+    SELECT first_name, last_name FROM customer WHERE first_name like 'any_value%'
+
+The WHERE clause contains a special expression percent (%) character, which is referred as a pattern.
+
+You construct a pattern by combining a string with wildcard characters and use the LIKE or NOT LIKE operator to find the matches.
+    Percent ( % ) for matching any sequence of characters.
+    Underscore ( _ ) for matching any single character.
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,34 @@
+## Overview of JOINS
+
+In this section we will discuss how to combine tables in our database with the use of JOIN statements! Sometime JOINS can be tricky for beginners, so if you want more resources after reviewing the lectures, check out the following helpful links:
+SQL JOINS Explained with Venn Diagrams ( http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/)
+SQL JOIN Examples ( http://www.sql-join.com/)
+Wikipedia Page on SQL JOINS ( https://en.wikipedia.org/wiki/Join_(SQL))
+
+## AS Statement
+    AS allows us to rename columns or table selections with an alias
+
+## Overview of INNER JOIN
+    Join allows us to relate data in one table to the data in other tables.
+    There are several kinds of joins including INNER JOIN, OUTER JOIN and SELF JOIN
+
+    ## INNER JOIN
+        To get the data from both tables, you use the INNER JOIN clause in the SELECT statement as follows:
+            
+            SELECT A.pka, A.c1, B.pka, B.c2
+            FROM A
+            INNER JOIN B ON A.pka = B.fka
+        
+        First, you specify the column in both tables from which you want to select data in the SELECT clause
+        Second, you specify the main table i.e., A in the FROM clause
+        Third, you specify the table that the main table joins to i.e. B in the INNER JOIN clause. In addition, you put a join condition after the ON keyword i.e A.pka = B.fka
+
+        For each row in the A table, PostgreSQL scans the B table to check if there is any row that matches the condition
+            i.e., A.pka = B.fka
+        If it finds a match, it combines columns of both rows into on row and add the combined row to the returned result set.
+        Sometimes A and B tables have the same column name so we have to refer to the column as table_name.column_name to avoid ambiguity.
+        In case the name of the table is long, you can use a table alias e.g., tbland refer to the column as tbl.column_name
+
+        The INNER JOIN clause returns rows in A table that have the corresponding rows in the B table.
+        
+

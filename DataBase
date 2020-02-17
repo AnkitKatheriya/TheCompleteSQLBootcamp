@@ -1,0 +1,12 @@
+Database are the systems that allow users to store and organize the data.
+They are useful dealing with large amounts of data
+
+Database Platform Options
+PostgreSQL
+MySQL
+MariaSQL
+MS SQL Server Express
+Microsoft Access
+SQLite
+
+SQL is the programming language to communicate with our Database

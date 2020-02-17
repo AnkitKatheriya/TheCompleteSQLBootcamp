@@ -1,0 +1,30 @@
+##### MIN MAX AVG SUM Aggregate Functions #####
+
+## Aggregate Functions
+
+Take lot of information of data and combine or aggregate it into a single value
+
+
+## Group BY Clause
+
+The GROUP BY clause divides the result set (rows) returned from the SELECT statement into groups
+For each group, you can apply aggregate function, for example: 
+    calculation the sum of items
+    count the number of items in the groups
+
+    SELECT column_1 , aggregate_function(column_2) FROM table GROUP BY column_1;
+
+## HAVING Clause
+
+We often use the HAVING Clause in conjunction with the GROUP BY clause to filer group rows that do not satisfy a specified condition
+    SELECT column_1, aggregate_funciton(column_2) FROM table_name GROUP BY column_1 HAVING condition;
+
+The HAVING clause sets the condition for group rows created by the GROUP BY clause after the GROUP BY clause applies while the WHERE clause sets the condition for individual rows before GROUP BY clause applies.
+This is the main difference between the HAVING and WHERE clasues.
+
+    SELECT rating, AVG(rental_rate)
+    FROM film
+    WHERE rating  IN ('R', 'G', 'PG')
+    GROUP BY rating
+    HAVING AVG(rental_rate) < 3;
+
